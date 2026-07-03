@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery | Venecia Reception Hall — Mesa, AZ</title>
-  <meta name="description" content="See inside Venecia Reception Hall in Mesa, AZ — wedding receptions, quinceañeras, sweet 16s and more across 3 elegant party areas.">
+  <title>Packages | Venecia Reception Hall — Mesa, AZ</title>
+  <meta name="description" content="Wedding, quinceañera and party packages at Venecia Reception Hall in Mesa, AZ. Payment plans available — a deposit reserves your date.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -16,8 +16,8 @@
       <a href="index.html" class="logo">Venecia<span>Reception Hall</span></a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" data-i18n="nav_home">Home</a></li>
-        <li><a href="gallery.html" class="active" data-i18n="nav_gallery">Gallery</a></li>
-        <li><a href="packages.html" data-i18n="nav_packages">Packages</a></li>
+        <li><a href="gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+        <li><a href="packages.html" class="active" data-i18n="nav_packages">Packages</a></li>
         <li><a href="about.html" data-i18n="nav_about">The Venue</a></li>
         <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
       </ul>
@@ -31,22 +31,45 @@
 
   <header class="page-hero">
     <div class="wrap">
-      <p class="eyebrow" data-i18n="gallery_eyebrow">The venue</p>
-      <h1 data-i18n="gallery_title">Inside Venecia</h1>
+      <p class="eyebrow" data-i18n="pkg_eyebrow">Packages</p>
+      <h1 data-i18n="pkg_title">Packages for every budget</h1>
     </div>
   </header>
 
   <section>
-    <div class="wrap">
-      <div class="filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="weddings" data-i18n="ev_weddings">Weddings</button>
-        <button class="filter-btn" data-filter="quinceaneras" data-i18n="ev_quince">Quinceañeras</button>
-        <button class="filter-btn" data-filter="sweet16" data-i18n="ev_sweet16">Sweet 16</button>
-        <button class="filter-btn" data-filter="other">Other</button>
-        <button class="filter-btn" data-filter="venue" data-i18n="nav_about">The Venue</button>
+    <div class="wrap center">
+      <p class="section-intro reveal" data-i18n="pkg_sub">Payment plans available · a deposit reserves your date</p>
+      <div class="pkg-grid" id="pkgGrid"></div>
+      <p class="pkg-note reveal">Prices reflect our current packages — ask about add-ons, custom guest counts and payment plans when you call.</p>
+    </div>
+  </section>
+
+  <section style="background:var(--white)">
+    <div class="wrap center">
+      <p class="eyebrow reveal">Questions</p>
+      <h2 class="reveal" style="margin-bottom:2.5rem">Frequently asked</h2>
+      <div class="faq reveal" style="text-align:left">
+        <details>
+          <summary>How much is the deposit to reserve our date?</summary>
+          <p>A deposit reserves your date and locks in your package price. Call us at 480-206-8626 for current deposit amounts — we're happy to walk you through it.</p>
+        </details>
+        <details>
+          <summary>Do you offer payment plans?</summary>
+          <p>Yes — payment plans are available on every package so you can pay toward your balance over time instead of all at once.</p>
+        </details>
+        <details>
+          <summary>How many guests can each hall hold?</summary>
+          <p>We have three party areas ranging from intimate gatherings up to 300+ guests. See <a href="about.html">The Venue</a> for details on each space.</p>
+        </details>
+        <details>
+          <summary>What's included in each package?</summary>
+          <p>Every package includes hall rental, tables & chairs and setup/cleanup at minimum. Higher tiers add linens, centerpieces, DJ service, catering and more — see the package cards above for what's included in each.</p>
+        </details>
+        <details>
+          <summary>Can we customize a package?</summary>
+          <p>Absolutely. Tell us about your celebration when you reach out and we'll tailor a package to your guest count and budget.</p>
+        </details>
       </div>
-      <div class="gallery-grid" id="galleryGrid"></div>
     </div>
   </section>
 
@@ -56,11 +79,6 @@
       <a href="contact.html" class="btn btn-gold" data-i18n="cta_band_btn">Schedule a visit</a>
     </div>
   </section>
-
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" aria-label="Close">×</button>
-    <img src="" alt="Venecia Reception Hall">
-  </div>
 
   <footer>
     <div class="wrap">
@@ -92,7 +110,7 @@
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">© 2026 Venecia Reception Hall · Mesa, Arizona</div>
+      <div class="footer-bottom">© 2026 Venecia Reception Hall · Mesa, Arizona · <a href="admin.html">Admin</a></div>
     </div>
   </footer>
 

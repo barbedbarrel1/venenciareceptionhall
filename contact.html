@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thank You | Venecia Reception Hall</title>
-  <meta name="robots" content="noindex">
+  <title>Contact | Venecia Reception Hall — Mesa, AZ</title>
+  <meta name="description" content="Reach Venecia Reception Hall in Mesa, AZ — call, or send your event details and we'll get back to you within 24 hours. Se habla Español.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -19,7 +19,7 @@
         <li><a href="gallery.html" data-i18n="nav_gallery">Gallery</a></li>
         <li><a href="packages.html" data-i18n="nav_packages">Packages</a></li>
         <li><a href="about.html" data-i18n="nav_about">The Venue</a></li>
-        <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
+        <li><a href="contact.html" class="active" data-i18n="nav_contact">Contact</a></li>
       </ul>
       <div class="nav-cta">
         <button class="lang-toggle" id="langToggle">ES</button>
@@ -28,24 +28,102 @@
     </div>
   </nav>
 
-  <section class="simple-page">
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="form_eyebrow">Reserve</p>
+      <h1 data-i18n="form_title">Check your date</h1>
+    </div>
+  </header>
+
+  <section>
     <div class="wrap center">
-      <span class="script-accent">¡Gracias!</span>
-      <h1>Your request is in</h1>
-      <p class="section-intro" style="margin-top:1rem">
-        We'll call you within 24 hours to talk about your celebration and schedule a visit.
-        While you wait, take a look around.
-      </p>
-      <p style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-        <a href="gallery.html" class="btn btn-teal" data-i18n="gallery_cta">View full gallery</a>
-        <a href="packages.html" class="btn btn-ghost-dark" data-i18n="nav_packages">Packages</a>
-      </p>
+      <p class="section-intro reveal" data-i18n="form_sub">Tell us about your event — we'll call you within 24 hours. Se habla Español.</p>
+      <div class="grid grid-2 reveal" style="text-align:left;max-width:640px;margin:0 auto 2.5rem">
+        <div>
+          <span class="cap" style="color:var(--gold);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;display:block;margin-bottom:.6rem" data-i18n="foot_visit">Visit us</span>
+          <p style="color:var(--grey)">243 S Mesa Dr<br>Mesa, AZ 85210</p>
+        </div>
+        <div>
+          <span class="cap" style="color:var(--gold);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;display:block;margin-bottom:.6rem">Call us</span>
+          <p style="color:var(--grey)"><a href="tel:4802068626">480-206-8626</a><br><a href="tel:4808271950">480-827-1950</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="inquiry" style="padding:clamp(1rem,3vw,2rem)">
+    <div class="inquiry-frame">
+      <form class="form-card" id="inquiryForm">
+        <div class="hp"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="form-row">
+          <div class="field"><label data-i18n="f_name">Name</label><input type="text" name="name" required></div>
+          <div class="field"><label data-i18n="f_phone">Phone</label><input type="tel" name="phone" required></div>
+        </div>
+        <div class="field"><label data-i18n="f_email">Email (optional)</label><input type="email" name="email"></div>
+        <div class="form-row">
+          <div class="field">
+            <label data-i18n="f_type">Event type</label>
+            <select name="event_type">
+              <option value="" data-i18n="opt_select">Select…</option>
+              <option value="wedding" data-i18n="opt_wedding">Wedding</option>
+              <option value="quinceanera" data-i18n="opt_quince">Quinceañera</option>
+              <option value="sweet16" data-i18n="opt_sweet16">Sweet 16</option>
+              <option value="baptism" data-i18n="opt_baptism">Baptism</option>
+              <option value="graduation" data-i18n="opt_grad">Graduation</option>
+              <option value="other" data-i18n="opt_other">Other</option>
+            </select>
+          </div>
+          <div class="field"><label data-i18n="f_date">Event date</label><input type="date" name="event_date"></div>
+        </div>
+        <div class="field"><label data-i18n="f_guests">Estimated guests</label><input type="number" name="guest_count" min="1"></div>
+        <div class="field"><label data-i18n="f_msg">Tell us about your celebration</label><textarea name="message" rows="3"></textarea></div>
+        <button type="submit" class="btn btn-gold" data-i18n="f_send">Send request</button>
+        <p class="form-msg"></p>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap center">
+      <p class="eyebrow reveal">Find us</p>
+      <h2 class="reveal">In the heart of Mesa</h2>
+      <div class="reveal" style="border-radius:var(--radius);overflow:hidden;border:var(--frame);box-shadow:var(--shadow)">
+        <iframe title="Map to Venecia Reception Hall" src="https://www.google.com/maps?q=243+S+Mesa+Dr,+Mesa,+AZ+85210&output=embed" width="100%" height="380" style="border:0;display:block" loading="lazy"></iframe>
+      </div>
     </div>
   </section>
 
   <footer>
     <div class="wrap">
-      <div class="footer-bottom" style="border:0;padding:0">© 2026 Venecia Reception Hall · Mesa, Arizona</div>
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo">Venecia<span>Reception Hall</span></a>
+          <p style="margin-top:1rem;font-size:.88rem" data-i18n="foot_tag">Weddings · Quinceañeras · Sweet 16 · Baptisms · Graduations · Private events</p>
+          <div class="socials">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">ig</a>
+            <a href="#" aria-label="TikTok">tk</a>
+          </div>
+        </div>
+        <div>
+          <h4 data-i18n="foot_visit">Visit us</h4>
+          <ul>
+            <li>243 S Mesa Dr<br>Mesa, AZ 85210</li>
+            <li><a href="tel:4802068626">480-206-8626</a></li>
+            <li><a href="tel:4808271950">480-827-1950</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="foot_explore">Explore</h4>
+          <ul>
+            <li><a href="gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+            <li><a href="packages.html" data-i18n="nav_packages">Packages</a></li>
+            <li><a href="about.html" data-i18n="nav_about">The Venue</a></li>
+            <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Venecia Reception Hall · Mesa, Arizona · <a href="admin.html">Admin</a></div>
     </div>
   </footer>
 
