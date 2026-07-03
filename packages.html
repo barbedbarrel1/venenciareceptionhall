@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Venecia Reception Hall — Mesa, AZ</title>
+  <meta name="description" content="See inside Venecia Reception Hall in Mesa, AZ — wedding receptions, quinceañeras, sweet 16s and more across 3 elegant party areas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a href="index.html" class="logo">Venecia<span>Reception Hall</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+        <li><a href="gallery.html" class="active" data-i18n="nav_gallery">Gallery</a></li>
+        <li><a href="packages.html" data-i18n="nav_packages">Packages</a></li>
+        <li><a href="about.html" data-i18n="nav_about">The Venue</a></li>
+        <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="lang-toggle" id="langToggle">ES</button>
+        <a href="contact.html" class="btn btn-teal btn-desktop" data-i18n="nav_cta">Check availability</a>
+        <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="gallery_eyebrow">The venue</p>
+      <h1 data-i18n="gallery_title">Inside Venecia</h1>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="weddings" data-i18n="ev_weddings">Weddings</button>
+        <button class="filter-btn" data-filter="quinceaneras" data-i18n="ev_quince">Quinceañeras</button>
+        <button class="filter-btn" data-filter="sweet16" data-i18n="ev_sweet16">Sweet 16</button>
+        <button class="filter-btn" data-filter="other">Other</button>
+        <button class="filter-btn" data-filter="venue" data-i18n="nav_about">The Venue</button>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2 data-i18n="cta_band_title">Ready to see it in person?</h2>
+      <a href="contact.html" class="btn btn-gold" data-i18n="cta_band_btn">Schedule a visit</a>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Close">×</button>
+    <img src="" alt="Venecia Reception Hall">
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo">Venecia<span>Reception Hall</span></a>
+          <p style="margin-top:1rem;font-size:.88rem" data-i18n="foot_tag">Weddings · Quinceañeras · Sweet 16 · Baptisms · Graduations · Private events</p>
+          <div class="socials">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">ig</a>
+            <a href="#" aria-label="TikTok">tk</a>
+          </div>
+        </div>
+        <div>
+          <h4 data-i18n="foot_visit">Visit us</h4>
+          <ul>
+            <li>243 S Mesa Dr<br>Mesa, AZ 85210</li>
+            <li><a href="tel:4802068626">480-206-8626</a></li>
+            <li><a href="tel:4808271950">480-827-1950</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="foot_explore">Explore</h4>
+          <ul>
+            <li><a href="gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+            <li><a href="packages.html" data-i18n="nav_packages">Packages</a></li>
+            <li><a href="about.html" data-i18n="nav_about">The Venue</a></li>
+            <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Venecia Reception Hall · Mesa, Arizona</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
