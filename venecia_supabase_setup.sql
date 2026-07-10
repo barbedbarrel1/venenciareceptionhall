@@ -168,16 +168,75 @@ create policy "auth full access gallery"
   using (true) with check (true);
 
 -- ============================================================
--- 5. SEED DATA — placeholder packages (edit names/prices with
--- the client, or later through the admin Settings tab)
+-- 5. SEED DATA — Venecia's REAL packages (from client documents)
+-- All prices are + tax. Where a package has two capacity tiers,
+-- base_price = the lower tier and the description shows both.
+-- Edit any of these later through the admin Settings tab —
+-- no SQL needed once the site is live.
 -- ============================================================
 insert into packages (name, base_price, description, included_items, is_popular, sort_order) values
-('Paquete Plata', 3500.00, 'Everything you need for a beautiful celebration.',
-  array['Hall rental (6 hours)','Tables & chairs for 150','Basic linens','Setup & cleanup'],
-  false, 1),
-('Paquete Oro', 5500.00, 'Our most popular package — elegance without the stress.',
-  array['Hall rental (8 hours)','Tables & chairs for 250','Premium linens & chair covers','Centerpieces','DJ (4 hours)','Setup & cleanup'],
-  true, 2),
-('Paquete Diamante', 7500.00, 'The full experience. You show up, we handle the rest.',
-  array['Largest hall (8 hours)','Tables & chairs for 300+','Premium linens & decor','Centerpieces & uplighting','DJ (6 hours)','Catering for 200','Cake table & throne setup','Setup & cleanup'],
-  false, 3);
+
+('Paquete 1 · Hall Rental', 3900.00,
+ 'The venue, staffed and glowing — bring your own food and cake. Medium hall (200 guests) $3,900 · Big hall (300 guests) $4,900, plus tax.',
+ array[
+   'Round tables & cushion chairs',
+   'Table & chair linens',
+   'Centerpiece decorations',
+   'Unlimited soda, water & ice',
+   'Up-lighting + laser show',
+   'Bartender & 3 servers',
+   'Manager & 2 security on site'
+ ], false, 1),
+
+('Paquete 2 · Small Hall All-Inclusive', 4900.00,
+ 'The full experience for an intimate celebration — up to 100 guests, plus tax.',
+ array[
+   'Tables, chairs & linens of your choice',
+   'Decorated cake, gift, main & signing tables',
+   'LED lighting & wall backdrop decor',
+   'Unlimited soda, water & ice',
+   'Full meal for 100 guests, served',
+   'Servers, bartender, plates & cutlery',
+   'DJ for the full event (7 hours)',
+   'Cake for 100 guests',
+   'On-site ceremony option & dance rehearsal access',
+   'Master of ceremonies & event planner',
+   'Luxury glassware & giant LED letters',
+   'Manager & security on site'
+ ], false, 2),
+
+('Paquete 3 · All-Inclusive', 6900.00,
+ 'Our most popular package — food, cake, DJ and decor, all handled. 200 guests $6,900 · 300 guests $7,900, plus tax.',
+ array[
+   'Tables, chairs & linens of your choice',
+   'Decorated cake, gift, main & signing tables',
+   'Slide show on screens + LED lighting',
+   'Wall backdrop decoration',
+   'Unlimited soda, water & ice',
+   'Full meal (Mexican, American or Italian), served',
+   'Servers, bartender, plates & cutlery',
+   'DJ for the full event (7 hours)',
+   'Cake for all your guests',
+   'On-site ceremony option & dance rehearsal access',
+   'Private room for the bride or quinceañera',
+   'Master of ceremonies & event coordinator',
+   'Luxury glassware & giant LED letters',
+   'Manager & security on site'
+ ], true, 3),
+
+('Paquete 4 · Premium Experience', 9900.00,
+ 'Everything in Paquete 3 — plus open bar, party bus and the crazy hour. 200 guests $9,900 · 300 guests $10,900, plus tax.',
+ array[
+   'Everything in Paquete 3',
+   'Unlimited mixed drinks & beer',
+   'Champagne + toast glasses',
+   'Table service or buffet setup',
+   'Arch, pillar & diamond-overlay decor',
+   'Centerpieces included',
+   '3 hours of party bus',
+   'Movie theater room for the kids',
+   'Ceremony chapel room',
+   'Crazy hour show (LED sticks & balloons)',
+   'Giant marquee letters',
+   'Cloud fog effect for the special dance'
+ ], false, 4);

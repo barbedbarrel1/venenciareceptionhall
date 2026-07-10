@@ -122,9 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
    Pulls live prices from Supabase so the site and the admin panel
    can never disagree. Falls back to static cards if DB not set up yet. */
 const FALLBACK_PACKAGES = [
-  { name: 'Paquete Plata', base_price: null, description: 'Everything you need for a beautiful celebration.', included_items: ['Hall rental', 'Tables & chairs', 'Basic linens', 'Setup & cleanup'], is_popular: false },
-  { name: 'Paquete Oro', base_price: null, description: 'Our most popular package — elegance without the stress.', included_items: ['Hall rental', 'Tables & chairs', 'Premium linens', 'Centerpieces', 'DJ', 'Setup & cleanup'], is_popular: true },
-  { name: 'Paquete Diamante', base_price: null, description: 'The full experience. You arrive, we handle the rest.', included_items: ['Largest hall', 'Premium decor', 'Centerpieces & uplighting', 'DJ', 'Catering', 'Setup & cleanup'], is_popular: false }
+  { name: 'Paquete 1 · Hall Rental', base_price: 3900, description: 'The venue, staffed and glowing — bring your own food and cake. 200 guests $3,900 · 300 guests $4,900 + tax.', included_items: ['Tables, chairs & linens', 'Centerpiece decorations', 'Unlimited soda, water & ice', 'Up-lighting + laser show', 'Bartender, servers & security'], is_popular: false },
+  { name: 'Paquete 2 · Small Hall All-Inclusive', base_price: 4900, description: 'The full experience for an intimate celebration — up to 100 guests, + tax.', included_items: ['Full meal for 100, served', 'DJ for 7 hours', 'Cake for 100 guests', 'Decor, LED lighting & giant LED letters', 'Master of ceremonies & event planner'], is_popular: false },
+  { name: 'Paquete 3 · All-Inclusive', base_price: 6900, description: 'Our most popular — food, cake, DJ and decor, all handled. 200 guests $6,900 · 300 guests $7,900 + tax.', included_items: ['Full meal (Mexican, American or Italian)', 'DJ for 7 hours + slide show', 'Cake for all your guests', 'Private room for the bride or quinceañera', 'MC, event coordinator & full decor'], is_popular: true },
+  { name: 'Paquete 4 · Premium Experience', base_price: 9900, description: 'Everything in Paquete 3 plus open bar, party bus and the crazy hour. 200 guests $9,900 · 300 guests $10,900 + tax.', included_items: ['Everything in Paquete 3', 'Unlimited mixed drinks & beer + champagne', '3 hours of party bus', 'Crazy hour show & cloud fog effect', 'Kids movie theater & ceremony chapel'], is_popular: false }
 ];
 
 async function loadPackages() {

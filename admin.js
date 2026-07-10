@@ -122,11 +122,12 @@ function balancePill(row) {
 /* ---------------- dashboard ---------------- */
 async function loadDashboard() {
   const { data: balances, error: balErr } = await db.from('client_balances').select('*');
-  const { data: payments, error: payErr } = await db.from('payments').select('amount, paid_at');
+  const { data: payments, error: payErr } = await db.from('payments').select('amount, paid_at, type');
   if (balErr || payErr) { toast('Could not load dashboard data.'); return; }
 
   const rows = balances || [];
-  const pays = payments || [];
+  // credits don't move real cash (README: "no cash changed hands") — exclude them from collected totals
+  const pays = (payments || []).filter(p => p.type !== 'credit');
   const now = new Date();
   const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
   const yearStart = new Date(now.getFullYear(), 0, 1);
@@ -134,7 +135,10 @@ async function loadDashboard() {
   const collectedMonth = pays.filter(p => new Date(p.paid_at) >= monthStart).reduce((s, p) => s + Number(p.amount), 0);
   const collectedYear = pays.filter(p => new Date(p.paid_at) >= yearStart).reduce((s, p) => s + Number(p.amount), 0);
   const active = rows.filter(r => r.status === 'active');
-  const projected = active.reduce((s, r) => s + Number(r.contract_price), 0);
+  // money still coming in from booked events that haven't happened yet
+  const projected = active
+    .filter(r => r.event_date && new Date(r.event_date + 'T00:00:00') >= now)
+    .reduce((s, r) => s + Math.max(0, Number(r.balance_owed)), 0);
   const outstanding = active.reduce((s, r) => s + Math.max(0, Number(r.balance_owed)), 0);
 
   document.getElementById('statMonth').textContent = money(collectedMonth);
@@ -260,6 +264,13 @@ async function openClientForm(client, isEdit) {
         </select>
       </div>
       <div class="field"><label>Notes</label><textarea name="notes" rows="2">${client?.notes || ''}</textarea></div>
+      ${!isEdit ? `
+      <div class="row2">
+        <div class="field"><label>Deposit taken today (optional)</label><input type="number" step="0.01" name="deposit_amount" placeholder="0.00"></div>
+        <div class="field"><label>Deposit method</label>
+          <select name="deposit_method"><option>cash</option><option>zelle</option><option>card</option><option>check</option></select>
+        </div>
+      </div>` : ''}
       <div class="modal-actions">
         ${isEdit ? '<button type="button" class="btn btn-outline btn-sm" id="viewPaymentsBtn">Payments</button>' : ''}
         <button type="button" class="btn btn-outline" id="modalCancel">Cancel</button>
@@ -300,6 +311,18 @@ async function openClientForm(client, isEdit) {
     } else {
       const { data: inserted, error } = await db.from('clients').insert(payload).select().single();
       if (error) { toast('Could not add client.'); return; }
+
+      const depositAmount = parseFloat(form.deposit_amount?.value || 0);
+      if (depositAmount > 0) {
+        await db.from('payments').insert({
+          client_id: inserted.id,
+          amount: depositAmount,
+          type: 'deposit',
+          method: form.deposit_method.value,
+          note: 'Deposit at booking'
+        });
+      }
+
       if (client?._fromInquiry) {
         await db.from('inquiries').update({ converted_client_id: inserted.id, status: 'booked' }).eq('id', client._fromInquiry);
         refreshInqBadge();
