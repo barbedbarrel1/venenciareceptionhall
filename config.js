@@ -15,7 +15,11 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 let db = null;
 try {
   if (window.supabase && /^https?:\/\//.test(SUPABASE_URL)) {
-    db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      // sessionStorage instead of the default localStorage — the admin login
+      // clears when the tab closes instead of staying signed in forever
+      auth: { storage: window.sessionStorage }
+    });
   }
 } catch (e) {
   console.warn('Supabase not configured yet:', e.message);
