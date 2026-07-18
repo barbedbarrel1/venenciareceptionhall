@@ -58,8 +58,8 @@ button { font-family: var(--font-body); cursor: pointer; }
 }
 .topbar .logo { font-family: var(--font-script); font-size: 1.5rem; color: #99e6da; }
 .topbar .user { display: flex; align-items: center; gap: .9rem; font-size: .85rem; color: #b7e6de; }
-.topbar button { background: none; border: 1px solid rgba(255,255,255,.35); color: #b7e6de; border-radius: 6px; padding: .3rem .8rem; font-size: .78rem; }
-.topbar button:hover { border-color: var(--gold); color: var(--gold); }
+.topbar button, .topbar .site-link { background: none; border: 1px solid rgba(255,255,255,.35); color: #b7e6de; border-radius: 6px; padding: .3rem .8rem; font-size: .78rem; text-decoration: none; }
+.topbar button:hover, .topbar .site-link:hover { border-color: var(--gold); color: var(--gold); }
 
 .tabs { display: flex; background: var(--white); border-bottom: 1px solid #e7e2d6; position: sticky; top: 0; z-index: 20; }
 .tab {
@@ -199,6 +199,10 @@ th.num { text-align: right; }
 .gallery-admin-grid .del {
   position: absolute; top: 6px; right: 6px; background: rgba(192,57,43,.9);
   color: #fff; border: none; border-radius: 6px; font-size: .68rem; padding: .2rem .5rem;
+}
+.gallery-admin-grid .cat {
+  position: absolute; bottom: 6px; left: 6px; background: rgba(11,58,54,.85);
+  color: #fff; font-size: .62rem; padding: .15rem .5rem; border-radius: 6px;
 }
 
 .toast {

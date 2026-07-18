@@ -545,6 +545,7 @@ async function loadGalleryAdmin() {
   grid.innerHTML = (data || []).map(g => `
     <div class="g-thumb" data-id="${g.id}">
       <img src="${g.image_url}" alt="${g.alt_text || ''}" loading="lazy">
+      <span class="cat">${g.category}</span>
       <button class="del" data-action="delete">Delete</button>
     </div>`).join('');
 
@@ -556,27 +557,34 @@ async function loadGalleryAdmin() {
 
 document.getElementById('galleryUploadBtn').addEventListener('click', async () => {
   const fileInput = document.getElementById('galleryFile');
-  const category = document.getElementById('galleryCategory').value;
   const file = fileInput.files[0];
   if (!file) { toast('Choose a photo first.'); return; }
+  const cats = [...document.querySelectorAll('#galleryCats input:checked')].map(c => c.value);
+  if (!cats.length) { toast('Check at least one category.'); return; }
 
-  const path = `${category}/${Date.now()}-${file.name}`;
+  // storage keys choke on spaces/accents — strip them from the filename
+  const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '');
+  const path = `${Date.now()}-${safeName}`;
   const { error: upErr } = await db.storage.from('gallery-images').upload(path, file);
-  if (upErr) { toast('Upload failed.'); return; }
+  if (upErr) { toast('Upload failed — ' + upErr.message); return; }
 
   const { data: pub } = db.storage.from('gallery-images').getPublicUrl(path);
-  const { error: insErr } = await db.from('gallery').insert({
+  // one photo can live in several categories — one gallery row per checked box,
+  // all pointing at the same uploaded file
+  const rows = cats.map(category => ({
     image_url: pub.publicUrl, category, alt_text: `Venecia Reception Hall — ${category}`
-  });
+  }));
+  const { error: insErr } = await db.from('gallery').insert(rows);
   if (insErr) { toast('Uploaded, but could not save it to the gallery list.'); return; }
 
-  toast('Photo uploaded.');
+  toast(cats.length > 1 ? `Photo added to ${cats.length} categories.` : 'Photo uploaded.');
   fileInput.value = '';
+  document.querySelectorAll('#galleryCats input:checked').forEach(c => c.checked = false);
   loadGalleryAdmin();
 });
 
 async function deleteGalleryItem(item) {
-  if (!confirm('Delete this photo?')) return;
+  if (!confirm(`Remove this photo from "${item.category}"? (If it's in other categories too, those copies stay.)`)) return;
   const { error } = await db.from('gallery').delete().eq('id', item.id);
   if (error) { toast('Could not delete photo.'); return; }
   toast('Photo deleted.');

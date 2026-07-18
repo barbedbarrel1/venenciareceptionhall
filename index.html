@@ -44,6 +44,10 @@
 
   <!-- HERO: the invitation -->
   <header class="hero">
+    <video class="hero-video" autoplay muted loop playsinline poster="images/hero.jpg">
+      <source src="images/hero-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
     <div class="hero-frame">
       <p class="eyebrow" data-i18n="hero_eyebrow">Mesa · Arizona</p>
       <span class="script-accent" data-i18n="hero_script">You are cordially invited to</span>
@@ -69,12 +73,12 @@
       <h2 class="reveal" data-i18n="events_title">Your event, your way</h2>
       <p class="section-intro reveal" data-i18n="events_sub">Every celebration deserves its own stage. Explore what Venecia hosts.</p>
       <div class="grid grid-3">
-        <a href="gallery.html" class="event-card reveal"><div class="ph">Photo</div><div class="label"><small>Venecia</small><span data-i18n="ev_weddings">Weddings</span></div></a>
-        <a href="gallery.html" class="event-card reveal"><div class="ph">Photo</div><div class="label"><small>Venecia</small><span data-i18n="ev_quince">Quinceañeras</span></div></a>
-        <a href="gallery.html" class="event-card reveal"><div class="ph">Photo</div><div class="label"><small>Venecia</small><span data-i18n="ev_sweet16">Sweet 16</span></div></a>
-        <a href="gallery.html" class="event-card reveal"><div class="ph">Photo</div><div class="label"><small>Venecia</small><span data-i18n="ev_baptism">Baptisms</span></div></a>
-        <a href="gallery.html" class="event-card reveal"><div class="ph">Photo</div><div class="label"><small>Venecia</small><span data-i18n="ev_grad">Graduations</span></div></a>
-        <a href="gallery.html" class="event-card reveal"><div class="ph">Photo</div><div class="label"><small>Venecia</small><span data-i18n="ev_private">Private parties</span></div></a>
+        <a href="gallery.html" class="event-card reveal"><img src="images/event-weddings.webp" alt="Wedding reception at Venecia Reception Hall, Mesa AZ" loading="lazy"><div class="label"><small>Venecia</small><span data-i18n="ev_weddings">Weddings</span><em class="card-sub" data-i18n="evs_weddings">Timeless ceremonies & elegant receptions</em></div></a>
+        <a href="gallery.html" class="event-card reveal"><img src="images/event-quinceanera.webp" alt="Quinceañera celebration at Venecia Reception Hall, Mesa AZ" loading="lazy"><div class="label"><small>Venecia</small><span data-i18n="ev_quince">Quinceañeras</span><em class="card-sub" data-i18n="evs_quince">Celebrate your milestone in style</em></div></a>
+        <a href="gallery.html" class="event-card reveal"><img src="images/event-sweet16.webp" alt="Sweet 16 party at Venecia Reception Hall, Mesa AZ" loading="lazy"><div class="label"><small>Venecia</small><span data-i18n="ev_sweet16">Sweet 16</span><em class="card-sub" data-i18n="evs_sweet16">A night your family will never forget</em></div></a>
+        <a href="gallery.html" class="event-card reveal"><img src="images/event-baptism.webp" alt="Baptism celebration at Venecia Reception Hall, Mesa AZ" loading="lazy"><div class="label"><small>Venecia</small><span data-i18n="ev_baptism">Baptisms</span><em class="card-sub" data-i18n="evs_baptism">A beautiful day for new beginnings</em></div></a>
+        <a href="gallery.html" class="event-card reveal"><div class="ph">Photo</div><div class="label"><small>Venecia</small><span data-i18n="ev_grad">Graduations</span><em class="card-sub" data-i18n="evs_grad">Honor every achievement</em></div></a>
+        <a href="gallery.html" class="event-card reveal"><img src="images/event-private.webp" alt="Private party at Venecia Reception Hall, Mesa AZ" loading="lazy"><div class="label"><small>Venecia</small><span data-i18n="ev_private">Private parties</span><em class="card-sub" data-i18n="evs_private">Birthdays, anniversaries & more</em></div></a>
       </div>
     </div>
   </section>
@@ -86,10 +90,10 @@
       <h2 class="reveal" data-i18n="gallery_title">Inside Venecia</h2>
       <p class="section-intro reveal" data-i18n="gallery_sub">Uplighting, elegant table settings and room for up to 300 of your favorite people.</p>
       <div class="gallery-grid reveal" style="margin-bottom:2rem">
-        <div class="g-item"><div class="ph">Ballroom</div></div>
-        <div class="g-item"><div class="ph">Table setting</div></div>
-        <div class="g-item"><div class="ph dark">Cake</div></div>
-        <div class="g-item"><div class="ph">Dance floor</div></div>
+        <a href="gallery.html" class="g-item"><div class="ph">Ballroom</div></a>
+        <a href="gallery.html" class="g-item"><div class="ph">Table setting</div></a>
+        <a href="gallery.html" class="g-item"><div class="ph">Cake</div></a>
+        <a href="gallery.html" class="g-item"><div class="ph">Dance floor</div></a>
       </div>
       <a href="gallery.html" class="btn btn-ghost-dark" data-i18n="gallery_cta">View full gallery</a>
     </div>
@@ -179,7 +183,7 @@
           <p style="margin-top:1rem;font-size:.88rem" data-i18n="foot_tag">Weddings · Quinceañeras · Sweet 16 · Baptisms · Graduations · Private events</p>
           <div class="socials">
             <a href="#" aria-label="Facebook">f</a>
-            <a href="#" aria-label="Instagram">ig</a>
+            <a href="https://www.instagram.com/veneciareceptionhall/" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
             <a href="#" aria-label="TikTok">tk</a>
           </div>
         </div>

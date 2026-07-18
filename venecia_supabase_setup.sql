@@ -240,3 +240,23 @@ insert into packages (name, base_price, description, included_items, is_popular,
    'Giant marquee letters',
    'Cloud fog effect for the special dance'
  ], false, 4);
+
+-- ============================================================
+-- 6. STORAGE: gallery photo bucket
+-- Creates the public bucket the admin panel uploads photos to,
+-- plus policies letting logged-in users upload/delete.
+-- (Public read is covered by the bucket's public flag.)
+-- ============================================================
+insert into storage.buckets (id, name, public)
+values ('gallery-images', 'gallery-images', true)
+on conflict (id) do nothing;
+
+create policy "auth upload gallery images"
+  on storage.objects for insert
+  to authenticated
+  with check (bucket_id = 'gallery-images');
+
+create policy "auth delete gallery images"
+  on storage.objects for delete
+  to authenticated
+  using (bucket_id = 'gallery-images');

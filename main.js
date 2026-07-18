@@ -20,6 +20,12 @@ const STRINGS = {
     events_sub: 'Every celebration deserves its own stage. Explore what Venecia hosts.',
     ev_weddings: 'Weddings', ev_quince: 'Quincea\u00f1eras', ev_sweet16: 'Sweet 16',
     ev_baptism: 'Baptisms', ev_grad: 'Graduations', ev_private: 'Private parties',
+    evs_weddings: 'Timeless ceremonies & elegant receptions',
+    evs_quince: 'Celebrate your milestone in style',
+    evs_sweet16: 'A night your family will never forget',
+    evs_baptism: 'A beautiful day for new beginnings',
+    evs_grad: 'Honor every achievement',
+    evs_private: 'Birthdays, anniversaries & more',
     gallery_eyebrow: 'The venue', gallery_title: 'Inside Venecia',
     gallery_sub: 'Uplighting, elegant table settings and room for up to 300 of your favorite people.',
     gallery_cta: 'View full gallery',
@@ -54,6 +60,12 @@ const STRINGS = {
     events_sub: 'Cada celebraci\u00f3n merece su propio escenario. Descubre lo que Venecia ofrece.',
     ev_weddings: 'Bodas', ev_quince: 'Quincea\u00f1eras', ev_sweet16: 'Sweet 16',
     ev_baptism: 'Bautizos', ev_grad: 'Graduaciones', ev_private: 'Fiestas privadas',
+    evs_weddings: 'Ceremonias inolvidables y recepciones elegantes',
+    evs_quince: 'Celebra tus XV con estilo',
+    evs_sweet16: 'Una noche que tu familia nunca olvidar\u00e1',
+    evs_baptism: 'Un d\u00eda hermoso para nuevos comienzos',
+    evs_grad: 'Celebra cada logro',
+    evs_private: 'Cumplea\u00f1os, aniversarios y m\u00e1s',
     gallery_eyebrow: 'El sal\u00f3n', gallery_title: 'Dentro de Venecia',
     gallery_sub: 'Iluminaci\u00f3n elegante, mesas hermosas y espacio para 300 de tus personas favoritas.',
     gallery_cta: 'Ver galer\u00eda completa',
@@ -186,7 +198,11 @@ function renderGallery(filter) {
   if (!target) return;
 
   if (galleryItems.length) {
-    const items = filter === 'all' ? galleryItems : galleryItems.filter(g => g.category === filter);
+    // a photo tagged in several categories = several rows sharing one image_url;
+    // in the "All" view show it only once
+    const items = filter === 'all'
+      ? galleryItems.filter((g, i, arr) => arr.findIndex(x => x.image_url === g.image_url) === i)
+      : galleryItems.filter(g => g.category === filter);
     target.innerHTML = items.map(g =>
       `<div class="g-item"><img src="${g.image_url}" alt="${g.alt_text || 'Venecia Reception Hall event'}" loading="lazy"></div>`).join('');
   } else {

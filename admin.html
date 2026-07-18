@@ -29,6 +29,7 @@
       <span class="logo">Venecia</span>
       <div class="user">
         <span id="userGreeting">Hola</span>
+        <a href="index.html" class="site-link">← View website</a>
         <button id="logoutBtn">Sign out</button>
       </div>
     </div>
@@ -117,14 +118,14 @@
             <input type="file" id="galleryFile" accept="image/*" style="width:100%;font-size:.85rem">
           </div>
           <div>
-            <label style="font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey)">Category</label>
-            <select id="galleryCategory" style="width:100%;padding:.55rem;border:1px solid #ddd6c8;border-radius:8px;font-family:var(--font-body)">
-              <option value="venue">The venue</option>
-              <option value="weddings">Weddings</option>
-              <option value="quinceaneras">Quinceañeras</option>
-              <option value="sweet16">Sweet 16</option>
-              <option value="other">Other</option>
-            </select>
+            <label style="font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey)">Categories — check all that apply</label>
+            <div id="galleryCats" style="display:flex;flex-wrap:wrap;gap:.3rem 1rem;padding-top:.35rem;font-size:.85rem">
+              <label style="display:flex;align-items:center;gap:.35rem"><input type="checkbox" value="venue"> The venue</label>
+              <label style="display:flex;align-items:center;gap:.35rem"><input type="checkbox" value="weddings"> Weddings</label>
+              <label style="display:flex;align-items:center;gap:.35rem"><input type="checkbox" value="quinceaneras"> Quinceañeras (Sweet 15)</label>
+              <label style="display:flex;align-items:center;gap:.35rem"><input type="checkbox" value="sweet16"> Sweet 16</label>
+              <label style="display:flex;align-items:center;gap:.35rem"><input type="checkbox" value="other"> Other</label>
+            </div>
           </div>
         </div>
         <button class="btn btn-teal btn-sm" id="galleryUploadBtn" style="margin-top:.8rem">Upload photo</button>

@@ -28,7 +28,9 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+/* 112.5% = 18px base instead of the browser's 16px default —
+   every rem-based size on the site scales up proportionally */
+html { scroll-behavior: smooth; font-size: 112.5%; }
 body {
   font-family: var(--font-body);
   font-weight: 300;
@@ -89,8 +91,8 @@ section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
   display: flex; align-items: center; justify-content: space-between;
   padding: .8rem 0;
 }
-.logo { font-family: var(--font-script); font-size: 2rem; color: var(--teal-deep); line-height: 1; }
-.logo span { display: block; font-family: var(--font-body); font-size: .55rem; letter-spacing: .42em; text-transform: uppercase; color: var(--gold); margin-top: -2px; }
+.logo { font-family: var(--font-script); font-size: 2.5rem; color: var(--teal-deep); line-height: 1; }
+.logo span { display: block; font-family: var(--font-body); font-size: .62rem; letter-spacing: .42em; text-transform: uppercase; color: var(--gold); margin-top: -2px; }
 .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
 .nav-links a { color: var(--ink); font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; }
 .nav-links a:hover, .nav-links a.active { color: var(--teal); }
@@ -121,17 +123,41 @@ section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
 
 /* ---------- hero (the invitation) ---------- */
 .hero {
-  background:
-    linear-gradient(rgba(11, 58, 54, .78), rgba(11, 58, 54, .88)),
-    url('images/hero.jpg') center/cover no-repeat,
-    var(--teal-deep);
+  position: relative;
+  overflow: hidden;
+  background: url('images/hero.jpg') center/cover no-repeat, var(--teal-deep);
   color: var(--white);
   padding: clamp(1rem, 3vw, 2rem);
+}
+.hero-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  /* softens any on-screen text/graphics baked into the footage so it
+     doesn't compete with the hero-frame text sitting on top */
+  filter: blur(1px);
+  transform: scale(1.02); /* hides the blurred edge the blur filter creates */
+  z-index: 0;
+}
+/* phones + reduced-motion: skip the video, the poster image behind it is enough */
+@media (max-width: 700px), (prefers-reduced-motion: reduce) {
+  .hero-video { display: none; }
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0, 0, 0, .58);
+  z-index: 1;
 }
 .hero-frame {
   border: var(--frame); border-radius: var(--radius);
   padding: clamp(3.5rem, 10vw, 7.5rem) 1.5rem;
+  background: rgba(0, 0, 0, .58);
   text-align: center; position: relative;
+  z-index: 2;
+}
+/* shift the invitation card off-center to the left on screens wide enough to spare the room */
+@media (min-width: 880px) {
+  .hero-frame { width: fit-content; max-width: 640px; margin: 0 auto 0 6%; }
 }
 /* invitation corner marks */
 .hero-frame::before, .hero-frame::after {
@@ -140,11 +166,11 @@ section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
 .hero-frame::before { top: 14px; left: 18px; }
 .hero-frame::after { bottom: 14px; right: 18px; }
 
-.hero .eyebrow { color: var(--gold-soft); }
-.hero h1 { max-width: 15ch; margin: 0 auto .5rem; }
+.hero .eyebrow { color: var(--gold-soft); text-shadow: 0 2px 14px rgba(0,0,0,.6); }
+.hero h1 { max-width: 15ch; margin: 0 auto .5rem; text-shadow: 0 2px 18px rgba(0,0,0,.65); }
 .hero h1 em { font-style: italic; color: var(--gold-soft); }
-.hero-sub { color: rgba(255,255,255,.75); max-width: 46ch; margin: 0 auto 2.2rem; font-size: 1.02rem; }
-.hero .script-accent { font-family: var(--font-script); font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--gold-soft); display: block; margin-bottom: .4rem; }
+.hero-sub { color: rgba(255,255,255,.75); max-width: 46ch; margin: 0 auto 2.2rem; font-size: 1.02rem; text-shadow: 0 2px 14px rgba(0,0,0,.6); }
+.hero .script-accent { font-family: var(--font-script); font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--gold-soft); display: block; margin-bottom: .4rem; text-shadow: 0 2px 14px rgba(0,0,0,.6); }
 
 /* ---------- trust bar ---------- */
 .trust { background: var(--ink); color: var(--white); padding: 1.4rem 0; }
@@ -154,7 +180,7 @@ section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
 
 /* ---------- event cards ---------- */
 .grid { display: grid; gap: 1.1rem; }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); margin-top: 2.2rem; }
 .grid-2 { grid-template-columns: repeat(2, 1fr); }
 @media (max-width: 880px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 540px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } }
@@ -167,12 +193,19 @@ section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
 }
 .event-card:hover { transform: translateY(-6px); }
 .event-card .ph { position: absolute; inset: 0; }
+.event-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.event-card:hover img { transform: scale(1.06); }
 .event-card .label {
-  position: relative; width: 100%; padding: 1rem 1.2rem;
-  background: linear-gradient(transparent, rgba(18,16,14,.72));
-  color: var(--white); font-family: var(--font-display); font-size: 1.3rem;
+  position: relative; width: 100%; padding: 1.6rem 1.2rem 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,.68), rgba(0,0,0,.22) 60%, transparent);
+  color: var(--white); font-family: var(--font-display); font-size: 1.45rem;
 }
-.event-card .label small { display: block; font-family: var(--font-body); font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-soft); }
+.event-card .label small { display: block; font-family: var(--font-body); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-soft); }
+.event-card .card-sub {
+  display: block; font-family: var(--font-body); font-style: normal;
+  font-size: .82rem; font-weight: 300; color: rgba(255,255,255,.88);
+  margin-top: .1rem;
+}
 
 /* photo placeholders — swap for real images later */
 .ph {
@@ -322,7 +355,19 @@ footer a:hover { color: var(--gold); }
 .socials a:hover { background: var(--gold); color: var(--ink); }
 
 /* ---------- page hero (interior pages) ---------- */
-.page-hero { background: var(--teal-deep); color: var(--white); text-align: center; padding: clamp(3rem, 7vw, 5rem) 0; }
+/* Subpage headers: each page points at its own photo (dark overlay for text).
+   Until a photo file exists in images/, the teal underneath shows — so these
+   upgrade automatically the moment the files are dropped in, no code edits. */
+.page-hero {
+  background: var(--teal-deep) center/cover no-repeat;
+  color: var(--white); text-align: center;
+  padding: clamp(3.5rem, 9vw, 7rem) 0;
+}
+.page-hero.hero-gallery  { background-image: linear-gradient(rgba(8,32,30,.55), rgba(8,32,30,.72)), url('images/page-gallery.jpg'); }
+.page-hero.hero-packages { background-image: linear-gradient(rgba(8,32,30,.55), rgba(8,32,30,.72)), url('images/page-packages.jpg'); }
+.page-hero.hero-about    { background-image: linear-gradient(rgba(8,32,30,.55), rgba(8,32,30,.72)), url('images/page-about.jpg'); }
+.page-hero.hero-contact  { background-image: linear-gradient(rgba(8,32,30,.55), rgba(8,32,30,.72)), url('images/page-contact.jpg'); }
+.page-hero h1 { text-shadow: 0 2px 18px rgba(0,0,0,.5); }
 .page-hero .eyebrow { color: var(--gold-soft); }
 
 /* ---------- scroll reveal ---------- */
