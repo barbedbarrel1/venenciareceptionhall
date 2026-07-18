@@ -133,11 +133,15 @@ section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  /* softens any on-screen text/graphics baked into the footage so it
-     doesn't compete with the hero-frame text sitting on top */
-  filter: blur(1px);
-  transform: scale(1.02); /* hides the blurred edge the blur filter creates */
   z-index: 0;
+}
+/* the softening blur stays desktop-only: CSS filters on <video> make many
+   phone GPUs render the video black or frozen, while desktops play fine */
+@media (min-width: 880px) {
+  .hero-video {
+    filter: blur(1px);
+    transform: scale(1.02); /* hides the blurred edge the blur filter creates */
+  }
 }
 /* reduced-motion users get the still poster image instead of the video */
 @media (prefers-reduced-motion: reduce) {

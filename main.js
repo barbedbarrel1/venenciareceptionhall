@@ -128,6 +128,17 @@ document.addEventListener('DOMContentLoaded', () => {
   loadPackages();
   loadGallery();
   wireInquiryForm();
+
+  // hero video: phones sometimes block autoplay (low power mode, data saver).
+  // Nudge playback explicitly, and if that's refused, retry on first touch —
+  // a user gesture is always allowed to start a muted video.
+  const heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) {
+    heroVideo.muted = true; // belt & braces: some browsers ignore the attribute
+    const tryPlay = () => heroVideo.play().catch(() => {});
+    tryPlay();
+    document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+  }
 });
 
 /* ---------------- packages (home teaser + packages page) ----------------
