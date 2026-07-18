@@ -139,8 +139,8 @@ section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
   transform: scale(1.02); /* hides the blurred edge the blur filter creates */
   z-index: 0;
 }
-/* phones + reduced-motion: skip the video, the poster image behind it is enough */
-@media (max-width: 700px), (prefers-reduced-motion: reduce) {
+/* reduced-motion users get the still poster image instead of the video */
+@media (prefers-reduced-motion: reduce) {
   .hero-video { display: none; }
 }
 .hero-overlay {
