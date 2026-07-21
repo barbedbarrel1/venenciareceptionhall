@@ -218,13 +218,33 @@ section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
   color: var(--teal-deep); font-size: .72rem; letter-spacing: .15em;
   text-transform: uppercase;
 }
-.ph.dark { background: linear-gradient(135deg, var(--teal-deep), #145a52); color: var(--gold-soft); }
 
 /* ---------- gallery ---------- */
 .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .9rem; }
-.gallery-grid .g-item { border-radius: var(--radius); overflow: hidden; aspect-ratio: 1; cursor: pointer; box-shadow: var(--shadow); }
+.gallery-grid .g-item { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 1; cursor: pointer; box-shadow: var(--shadow); display: block; }
 .gallery-grid .g-item img, .gallery-grid .g-item .ph { width: 100%; height: 100%; object-fit: cover; }
 @media (max-width: 880px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* homepage preview tiles: slow zoom + gold caption that rises on hover */
+.gallery-grid.preview .g-item img { transition: transform .6s ease; }
+.gallery-grid.preview .g-item::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(11,58,54,.72), rgba(11,58,54,.05) 55%, transparent);
+  opacity: .85; transition: opacity .4s ease;
+}
+.gallery-grid.preview .g-item:hover img { transform: scale(1.08); }
+.gallery-grid.preview .g-item:hover::after { opacity: 1; }
+.gallery-grid.preview .g-cap {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  padding: 1.1rem 1rem; text-align: center;
+  font-family: var(--font-display); font-size: 1.25rem; color: var(--white);
+  letter-spacing: .02em; text-shadow: 0 2px 12px rgba(0,0,0,.5);
+  transform: translateY(.4rem); transition: transform .4s ease;
+}
+.gallery-grid.preview .g-item:hover .g-cap { transform: translateY(0); }
+.gallery-grid.preview .g-cap::before {
+  content: '✦'; display: block; color: var(--gold-soft); font-size: .7rem; margin-bottom: .3rem;
+}
 
 .filters { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
 .filter-btn {
@@ -335,6 +355,7 @@ section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
 @media (max-width: 820px) { .hall-row { grid-template-columns: 1fr; } .hall-row:nth-child(even) .hall-photo { order: 0; } }
 .hall-photo { border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; box-shadow: var(--shadow); border: var(--frame); }
 .hall-photo .ph { width: 100%; height: 100%; }
+.hall-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .hall-copy h3 { font-size: 1.9rem; margin-bottom: .5rem; }
 .hall-copy .cap { color: var(--gold); font-size: .75rem; letter-spacing: .25em; text-transform: uppercase; margin-bottom: .8rem; display: block; }
 .hall-copy p { color: var(--grey); }
@@ -367,10 +388,10 @@ footer a:hover { color: var(--gold); }
   color: var(--white); text-align: center;
   padding: clamp(3.5rem, 9vw, 7rem) 0;
 }
-.page-hero.hero-gallery  { background-image: linear-gradient(rgba(8,32,30,.55), rgba(8,32,30,.72)), url('images/page-gallery.jpg'); }
-.page-hero.hero-packages { background-image: linear-gradient(rgba(8,32,30,.55), rgba(8,32,30,.72)), url('images/page-packages.jpg'); }
-.page-hero.hero-about    { background-image: linear-gradient(rgba(8,32,30,.55), rgba(8,32,30,.72)), url('images/page-about.jpg'); }
-.page-hero.hero-contact  { background-image: linear-gradient(rgba(8,32,30,.55), rgba(8,32,30,.72)), url('images/page-contact.jpg'); }
+.page-hero.hero-gallery  { background-image: linear-gradient(rgba(8,32,30,.55), rgba(8,32,30,.72)), url('images/page-gallery.webp'); }
+.page-hero.hero-packages { background-image: linear-gradient(rgba(8,32,30,.55), rgba(8,32,30,.72)), url('images/page-packages.webp'); }
+.page-hero.hero-about    { background-image: linear-gradient(rgba(8,32,30,.55), rgba(8,32,30,.72)), url('images/page-about.webp'); }
+.page-hero.hero-contact  { background-image: linear-gradient(rgba(8,32,30,.55), rgba(8,32,30,.72)), url('images/page-contact.webp'); }
 .page-hero h1 { text-shadow: 0 2px 18px rgba(0,0,0,.5); }
 .page-hero .eyebrow { color: var(--gold-soft); }
 

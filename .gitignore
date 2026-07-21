@@ -1,3 +1,9 @@
 # Original uncompressed hero footage — 113MB, way over GitHub's 100MB limit.
 # The compressed version actually used by the site lives in images/hero-video.mp4.
 SLIDESHOW VENECIA.mp4
+
+# Raw phone photos (source material). The compressed webp versions the site
+# actually uses live in images/. Keep these locally, don't bloat the repo.
+IMG_*.JPEG
+IMG_*.jpeg
+IMG_*.jpg
