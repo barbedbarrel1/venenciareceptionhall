@@ -265,7 +265,18 @@ section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
 .lightbox-close { position: absolute; top: 1.2rem; right: 1.6rem; background: none; border: none; color: var(--gold); font-size: 2rem; cursor: pointer; }
 
 /* ---------- packages ---------- */
-.pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; align-items: stretch; }
+/* packages band: a champagne tint (deeper than the ivory page) with gold
+   hairlines, so the white package cards lift off the background instead of
+   blending into it the way they did on pure white */
+.pkg-section {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 0%, rgba(198, 162, 78, .13), transparent 70%),
+    linear-gradient(180deg, #f4efe4, #efe9dc);
+  border-top: var(--frame);
+  border-bottom: var(--frame);
+}
+
+.pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; align-items: stretch;}
 @media (max-width: 880px) { .pkg-grid { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; } }
 
 .pkg-card {
